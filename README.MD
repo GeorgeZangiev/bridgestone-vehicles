@@ -113,10 +113,6 @@ bridgestone-vehicles/
    7.3. TokenService.java: Service for managing tokens, related to authentication.
 
 
-
-
-
-
 ## Resources
 
 
@@ -127,12 +123,12 @@ bridgestone-vehicles/
 
 ## Tests
 
-- src/test/java/com/bridgestone/vehicles/: Test classes.  
-  1.1. VehicleApplicationTests.java: Tests for the main application.  
-  1.2. controller/VehicleControllerTest.java: Tests for the VehicleController.  
-  1.3. model/KafkaPayloadTest.java: Tests for the KafkaPayload model.  
-  1.4. service/KafkaConsumerServiceTest.java: Tests for the KafkaConsumerService.  
-  1.5. service/KafkaProducerServiceTest.java: Tests for the KafkaProducerService.
+1. src/test/java/com/bridgestone/vehicles/: Test classes.  
+   1.1. VehicleApplicationTests.java: Tests for the main application.  
+   1.2. controller/VehicleControllerTest.java: Tests for the VehicleController.  
+   1.3. model/KafkaPayloadTest.java: Tests for the KafkaPayload model.  
+   1.4. service/KafkaConsumerServiceTest.java: Tests for the KafkaConsumerService.  
+   1.5. service/KafkaProducerServiceTest.java: Tests for the KafkaProducerService.
 
 ## Getting Started
 
@@ -140,7 +136,8 @@ bridgestone-vehicles/
 
 - **Clone the repository:**
  ```sh  
-  git clone https://github.com/GeorgeZangiev/bridgestone-vehicles.git  cd bridgestone-vehicles ```  
+  git clone https://github.com/GeorgeZangiev/bridgestone-vehicles.git
+  cd bridgestone-vehicles
   ## Run the application using Docker Compose:    
   docker-compose build
   docker-compose up
