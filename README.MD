@@ -108,7 +108,7 @@ bridgestone-vehicles/
 6. repository/: Contains repository interfaces.  
    6.1. VehicleRepository.java: Repository interface for vehicle data access.
 7. service/: Contains service classes.  
-   7.1. KafkaConsumerService.java: Service for consuming Kafka messages.
+   7.1. KafkaConsumerService.java: Service for consuming Kafka messages.  
    7.2. KafkaProducerService.java: Service for producing Kafka messages.  
    7.3. TokenService.java: Service for managing tokens, related to authentication.
 
