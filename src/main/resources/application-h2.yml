@@ -49,4 +49,4 @@ openapi:
 security:
   users:
     admin:
-      password: {noop}admin
+      password: "{noop}admin"
