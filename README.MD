@@ -94,6 +94,7 @@ bridgestone-vehicles/
    1.1. KafkaConfig.java: Configuration for Kafka.  
    1.2. RsaKeyProperties.java: Configuration for RSA keys, used for security.  
    1.3. SecurityConfig.java: Security configuration, possibly using Spring Security.
+   1.4. OpenAPIConfig.java: Swagger Server configuration, used for API documentation.
 2. controller/: Contains REST controllers.  
    2.1. AuthController.java: Manages authentication endpoint.  
    2.2. VehicleController.java: Manages vehicle-related endpoints.
@@ -145,9 +146,10 @@ bridgestone-vehicles/
 ## Access the application:
 
 - The application will be available at http://localhost:8086.
--  Grafana will be available at http://localhost:3000.
+-   Grafana will be available at http://localhost:3000.
 -   Prometheus will be available at http://localhost:9090.
 -   PgAdmin will be available at http://localhost:8080.
+- Swagger will be available at http://localhost:8086/swagger-ui/index.html
 
 ## Configuration
 Application configurations are located in the src/main/resources directory.

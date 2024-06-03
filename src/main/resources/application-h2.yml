@@ -41,3 +41,7 @@ management:
 rsa:
   private-key: classpath:certs/private.pem
   public-key: classpath:certs/public.pem
+
+openapi:
+  dev:
+    url: http://localhost:8086

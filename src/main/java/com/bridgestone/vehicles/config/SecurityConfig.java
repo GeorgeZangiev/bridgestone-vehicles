@@ -51,6 +51,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll(); // Allow access to actuator endpoints
+                    auth.requestMatchers("/swagger-ui.html", "/v3/api-docs/**", "/swagger-ui/**").permitAll(); // Allow access to swagger
                     auth.anyRequest().authenticated(); // Secure all other endpoints
                 })
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
