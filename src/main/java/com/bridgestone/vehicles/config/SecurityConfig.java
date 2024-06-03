@@ -6,6 +6,8 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,17 +34,17 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
 
     private final RsaKeyProperties jwtConfigProperties;
 
-    public SecurityConfig(RsaKeyProperties jwtConfigProperties) {
-        this.jwtConfigProperties = jwtConfigProperties;
-    }
+    @Value("${security.users.admin.password}")
+    private String password;
 
     @Bean
     public InMemoryUserDetailsManager users() {
-        return new InMemoryUserDetailsManager(User.withUsername("admin").password("{noop}admin").authorities("read").build());
+        return new InMemoryUserDetailsManager(User.withUsername("admin").password(password).authorities("read").build());
     }
 
     @Bean

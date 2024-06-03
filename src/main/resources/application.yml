@@ -45,3 +45,8 @@ rsa:
 openapi:
   dev:
     url: http://localhost:8086
+
+security:
+  users:
+    admin:
+      password: {noop}admin
