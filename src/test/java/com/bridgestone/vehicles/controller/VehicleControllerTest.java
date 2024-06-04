@@ -4,6 +4,8 @@ import com.bridgestone.vehicles.config.SecurityConfig;
 import com.bridgestone.vehicles.enums.CodeEnum;
 import com.bridgestone.vehicles.enums.VehicleStatus;
 import com.bridgestone.vehicles.exception.VehicleApplicationException;
+import com.bridgestone.vehicles.handlers.VehicleAccessDeniedHandler;
+import com.bridgestone.vehicles.handlers.VehicleAuthenticationEntryPoint;
 import com.bridgestone.vehicles.model.KafkaPayload;
 import com.bridgestone.vehicles.model.VehicleState;
 import com.bridgestone.vehicles.repository.VehicleRepository;
@@ -35,9 +37,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest({VehicleController.class, AuthController.class})
-@Import({SecurityConfig.class, TokenService.class})
+@Import({SecurityConfig.class, TokenService.class, VehicleAuthenticationEntryPoint.class, VehicleAccessDeniedHandler.class})
 class VehicleControllerTest {
 
+    @Autowired
+    ObjectMapper objectMapper;
     @Autowired
     MockMvc mvc;
     @Autowired
@@ -46,8 +50,6 @@ class VehicleControllerTest {
     KafkaProducerService kafkaProducerService;
     @MockBean
     VehicleRepository vehicleRepository;
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @Test
     void tokenWhenAnonymousThenStatusIsUnauthorized() throws Exception {
@@ -121,6 +123,6 @@ class VehicleControllerTest {
                 .thenReturn(Collections.emptyList());
         var exception = assertThrows(VehicleApplicationException.class, () -> vehicleController.getHistory(100L));
         assertEquals("No entities were found for vehicleId: 100", exception.getMessage());
-        assertEquals(CodeEnum.NOT_FOUND, exception.getCodeEnum());
+        assertEquals(CodeEnum.HISTORY_NOT_FOUND, exception.getCodeEnum());
     }
 }

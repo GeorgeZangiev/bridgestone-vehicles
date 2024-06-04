@@ -103,12 +103,17 @@ bridgestone-vehicles/
    3.2. VehicleStatus.java: Defines statuses for vehicles.
 4. exception/: Contains custom exception classes.  
    4.1. VehicleApplicationException.java: Custom exception for the application.
-5. model/: Contains model classes.  
+5. handlers/: Contains Exception handlers and custom entry point
+   5.1. RestResponseEntityExceptionHandler.java: Handles most of the exceptions
+   5.2. VehicleAccessDeniedHandler.java: Handles AuthenticationException
+   5.3. VehicleAuthenticationEntryPoint.java: Handles AccessDeniedException
+6. model/: Contains model classes.  
    5.1. KafkaPayload.java: Defines the payload for Kafka messages.  
-   5.2. VehicleState.java: Represents the state of a vehicle.
-6. repository/: Contains repository interfaces.  
+   5.2. VehicleState.java: Represents the state of a vehicle. 
+   5.3. HttpErrorResponse.java: Represents error response.
+7. repository/: Contains repository interfaces.  
    6.1. VehicleRepository.java: Repository interface for vehicle data access.
-7. service/: Contains service classes.  
+8. service/: Contains service classes.  
    7.1. KafkaConsumerService.java: Service for consuming Kafka messages.  
    7.2. KafkaProducerService.java: Service for producing Kafka messages.  
    7.3. TokenService.java: Service for managing tokens, related to authentication.

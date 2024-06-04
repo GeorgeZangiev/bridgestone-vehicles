@@ -1,5 +1,7 @@
 package com.bridgestone.vehicles.config;
 
+import com.bridgestone.vehicles.handlers.VehicleAccessDeniedHandler;
+import com.bridgestone.vehicles.handlers.VehicleAuthenticationEntryPoint;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
@@ -23,8 +25,6 @@ import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
-import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationEntryPoint;
-import org.springframework.security.oauth2.server.resource.web.access.BearerTokenAccessDeniedHandler;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -37,6 +37,8 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
+    private final VehicleAuthenticationEntryPoint vehicleAuthenticationEntryPoint;
+    private final VehicleAccessDeniedHandler vehicleAccessDeniedHandler;
     private final RsaKeyProperties jwtConfigProperties;
 
     @Value("${security.users.admin.password}")
@@ -59,8 +61,8 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.decoder(jwtDecoder())))
                 .exceptionHandling(ex -> ex
-                        .authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
-                        .accessDeniedHandler(new BearerTokenAccessDeniedHandler())
+                        .authenticationEntryPoint(vehicleAuthenticationEntryPoint)
+                        .accessDeniedHandler(vehicleAccessDeniedHandler)
                 );
 
         return http.build();
@@ -75,8 +77,8 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .csrf(AbstractHttpConfigurer::disable)
                 .exceptionHandling(ex -> {
-                    ex.authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint());
-                    ex.accessDeniedHandler(new BearerTokenAccessDeniedHandler());
+                    ex.authenticationEntryPoint(vehicleAuthenticationEntryPoint);
+                    ex.accessDeniedHandler(vehicleAccessDeniedHandler);
                 })
                 .httpBasic(withDefaults());
 

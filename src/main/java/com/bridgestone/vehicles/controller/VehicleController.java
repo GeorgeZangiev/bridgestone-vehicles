@@ -58,7 +58,7 @@ public class VehicleController {
     public ResponseEntity<List<VehicleState>> getHistory(@RequestParam("id") Long vehicleId) {
         var entities = vehicleRepository.findAllByVehicleId(vehicleId);
         if (entities.isEmpty()) {
-            throw new VehicleApplicationException("No entities were found for vehicleId: " + vehicleId, CodeEnum.NOT_FOUND);
+            throw new VehicleApplicationException("No entities were found for vehicleId: " + vehicleId, CodeEnum.HISTORY_NOT_FOUND);
         }
         return ResponseEntity.ok().body(entities);
     }
