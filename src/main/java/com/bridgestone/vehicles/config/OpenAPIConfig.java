@@ -36,7 +36,7 @@ public class OpenAPIConfig {
                 .title("Vehicle Tracking API")
                 .version("1.0")
                 .contact(contact)
-                .description("This API exposes endpoints to manage tutorials.")
+                .description("This API is for registering and tracking vehicle data (location, temperature, status, etc.)")
                 .license(mitLicense);
 
         return new OpenAPI().info(info).servers(List.of(devServer));

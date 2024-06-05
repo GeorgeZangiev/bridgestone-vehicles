@@ -1,7 +1,8 @@
 
 # Bridgestone Vehicles
 
-This project is a Spring Boot application for managing vehicle data, integrated with Kafka for messaging and secured with RSA keys. The application is containerized using Docker and includes monitoring configurations for Grafana and Prometheus.
+This project is a Spring Boot application for registering and tracking vehicle data (location, temperature, status, etc.),
+integrated with Kafka for messaging and secured with RSA keys. The application is containerized using Docker and includes monitoring configurations for Grafana and Prometheus.
 
 ## Project Structure
 

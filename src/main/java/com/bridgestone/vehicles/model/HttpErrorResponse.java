@@ -16,7 +16,7 @@ import java.time.OffsetDateTime;
 @NoArgsConstructor
 public class HttpErrorResponse {
 
-    @Schema(description = "Error Code", example = "404")
+    @Schema(description = "Error Code", example = "BAD_REQUEST")
     @NotNull
     private String code;
 
